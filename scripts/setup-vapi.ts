@@ -41,7 +41,7 @@ const patch = (ep: string, b: object) => apiCall('PATCH', ep, b)
 
 // ── Shared config ─────────────────────────────────────────────────────
 // 🧪 TESTING (English-clear, Pakistani-friendly):
-const VOICE = { provider: 'openai', voiceId: 'shimmer', speed: 0.95 }
+const VOICE = { provider: 'openai', voiceId: 'shimmer', model: 'tts-1-hd', speed: 0.95 }
 // 🇸🇦 PRODUCTION (native Saudi Arabic — switch before demo):
 // const VOICE = { provider: 'azure', voiceId: 'ar-SA-HamedNeural', speed: 0.9 }
 const STT = { provider: 'deepgram', model: 'nova-2', language: 'multi' }
@@ -308,7 +308,7 @@ ENDING THE CALL:
           { type: 'assistant', assistantName: 'Care Specialist', description: 'Rejection, system error, or needs human help' },
           { type: 'assistant', assistantName: 'Direct KSA Greeter', description: 'Re-route' },
         ],
-        },
+      },
     ],
   },
 
@@ -496,7 +496,7 @@ ENDING THE CALL:
           { type: 'assistant', assistantName: 'Care Specialist', description: 'System error or needs human help' },
           { type: 'assistant', assistantName: 'Direct KSA Greeter', description: 'Re-route' },
         ],
-        },
+      },
     ],
   },
 
