@@ -83,7 +83,7 @@ export async function createAppointment(data: {
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [[
-          bookingId, data.customer_name, data.phone, data.whatsapp_number ?? data.phone,
+          bookingId, data.customer_name, `'${data.phone}`, `'${data.whatsapp_number ?? data.phone}`,
           data.branch, data.branch_code, data.date,
           data.time, data.visa_type, 'Confirmed', new Date().toISOString(),
 

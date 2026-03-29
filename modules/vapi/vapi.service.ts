@@ -1,5 +1,5 @@
 import { getApplicationStatus, createAppointment, logInteraction } from '@/lib/sheets'
-import { detectLanguage, parseVapiToolCall } from './vapi.utils'
+import { detectLanguage, parseVapiToolCall, normalizePhoneNumber } from './vapi.utils'
 
 // ── Vapi response shape ────────────────────────────────────────────
 export function buildVapiResult(toolCallId: string, result: unknown) {
@@ -44,7 +44,7 @@ export async function handleEndOfCallReport(body: Record<string, unknown>): Prom
 
 // ── Tool call handler ─────────────────────────────────────────────
 export async function handleToolCall(body: Record<string, unknown>): Promise<unknown> {
-  const { toolName, args, toolCallId } = parseVapiToolCall(body)
+  const { toolName, args, toolCallId, callerNumber } = parseVapiToolCall(body)
 
   console.log(`Tool called: ${toolName}`, args)
 
@@ -62,7 +62,12 @@ export async function handleToolCall(body: Record<string, unknown>): Promise<unk
     }
 
     case 'create_appointment': {
-      const result = await createAppointment(args as Parameters<typeof createAppointment>[0])
+      const normalized = {
+        ...args,
+        phone:           normalizePhoneNumber(args.phone as string, callerNumber),
+        whatsapp_number: normalizePhoneNumber((args.whatsapp_number ?? args.phone) as string, callerNumber),
+      }
+      const result = await createAppointment(normalized as Parameters<typeof createAppointment>[0])
       return buildVapiResult(toolCallId, result)
     }
 

@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:vapi.ai)",
+      "Bash(grep -r \"phone\\\\|normalize\\\\|country\\\\|966\\\\|whatsapp\" e:/web/direc-ksa --include=*.ts --include=*.tsx --include=*.json)",
+      "WebFetch(domain:json2video.com)",
+      "WebFetch(domain:docs.vapi.ai)",
+      "WebFetch(domain:elevenlabs-sdk.mintlify.app)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:vapi.mintlify.app)",
+      "WebFetch(domain:cartesia.ai)"
     ]
   }
 }
