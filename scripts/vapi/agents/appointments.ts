@@ -42,7 +42,7 @@ If wrong → ask the customer to repeat the full number again.
 Never proceed without confirmed phone number.
 
 WHATSAPP:
-After confirming phone, ask: "هل هذا نفس رقم واتساب؟"
+After confirming phone, ask: "هل هذا نفس رقم واتساب؟" — لا تعيد قراءة الرقم مرة ثانية.
 If YES → set whatsapp_number = same as phone.
 If NO  → ask: "وش رقم واتساب؟" → read back in groups to confirm → set whatsapp_number = that number.
 
@@ -149,7 +149,7 @@ If wrong → ask the customer to repeat the full number again.
 Never proceed without confirmed phone number.
 
 WHATSAPP:
-After confirming phone, ask: "Is this your WhatsApp number too?"
+After confirming phone, ask simply: "Is this your WhatsApp number too?" — do NOT repeat or read the number back again.
 If YES → set whatsapp_number = same as phone.
 If NO  → ask: "What's your WhatsApp number?" → read back in groups to confirm → set whatsapp_number = that number.
 

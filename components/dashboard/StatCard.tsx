@@ -25,7 +25,13 @@ export function StatCard({ label, value, icon, accentColor = 'text-white', anima
           </div>
           <span className="text-[11px] font-medium uppercase tracking-widest text-gray-500">{label}</span>
         </div>
-        <p className={`text-3xl font-bold tabular-nums ${accentColor}`}>
+        <p className={`font-bold tabular-nums leading-tight ${accentColor} ${
+          isNumeric || String(value).length <= 6
+            ? 'text-3xl'
+            : String(value).length <= 10
+              ? 'text-2xl'
+              : 'text-lg'
+        }`}>
           {isNumeric && animate ? (
             <span ref={counterRef}>{value}</span>
           ) : (
