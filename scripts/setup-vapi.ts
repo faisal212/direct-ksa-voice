@@ -89,6 +89,7 @@ async function setup() {
       maxDurationSeconds: 480,
       backgroundSound: agent.key.startsWith('care') ? 'off' : 'office',
       backchannelingEnabled: true,
+      backgroundSpeechDenoisingPlan: { smartDenoisingPlan: { enabled: true } },
       endCallPhrases: ['مع السلامة', 'goodbye', 'bye'],
     }
 
