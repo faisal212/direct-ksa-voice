@@ -14,7 +14,7 @@ export default function HomePage() {
     <div className="min-h-screen flex items-center justify-center p-6 relative z-10">
       <div className="text-center max-w-lg">
         {/* Brand */}
-        <h1 className="font-display text-6xl tracking-tight text-white">
+        <h1 className="font-bold text-6xl tracking-tight text-white">
           {namePrimary} <span style={{ color: 'var(--brand-color)' }}>{brand.nameAccent}</span>
         </h1>
         <p className="font-arabic text-xl text-gray-500 mt-2" dir="rtl">{brand.nameAr}</p>
