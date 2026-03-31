@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1320" height="740" viewBox="0 0 1320 740" xmlns="http://www.w3.org/2000/svg"
+     font-family="ui-monospace,'JetBrains Mono','Cascadia Code',monospace">
+
+  <defs>
+    <!-- Dot grid pattern -->
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="0.9" fill="rgba(201,168,76,0.10)"/>
+    </pattern>
+
+    <!-- Gold radial glow behind title -->
+    <radialGradient id="titleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#C9A84C" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#060E1E" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Subtle card glow -->
+    <filter id="cardGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Arrow markers -->
+    <marker id="arrowGold" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#C9A84C" opacity="0.85"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#60A5FA" opacity="0.85"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#34D399" opacity="0.85"/>
+    </marker>
+  </defs>
+
+  <!-- ── Background ─────────────────────────────────────────────── -->
+  <rect width="1320" height="740" fill="#060E1E"/>
+  <rect width="1320" height="740" fill="url(#dots)"/>
+
+  <!-- Corner accents (Islamic geometric feel) -->
+  <g opacity="0.12" fill="none" stroke="#C9A84C" stroke-width="0.8">
+    <path d="M0,0 L60,0 L60,8 L8,8 L8,60 L0,60 Z"/>
+    <path d="M1320,0 L1260,0 L1260,8 L1312,8 L1312,60 L1320,60 Z"/>
+    <path d="M0,740 L60,740 L60,732 L8,732 L8,680 L0,680 Z"/>
+    <path d="M1320,740 L1260,740 L1260,732 L1312,732 L1312,680 L1320,680 Z"/>
+  </g>
+
+  <!-- ── Title ───────────────────────────────────────────────────── -->
+  <ellipse cx="660" cy="52" rx="280" ry="42" fill="url(#titleGlow)"/>
+  <text x="660" y="42" text-anchor="middle" font-size="22" font-weight="700"
+        font-family="ui-sans-serif,system-ui,sans-serif" letter-spacing="1" fill="white">
+    Masaar <tspan fill="#C9A84C">KSA</tspan>
+  </text>
+  <text x="660" y="62" text-anchor="middle" font-size="10.5" fill="#3D5A80"
+        font-family="ui-sans-serif,system-ui,sans-serif" letter-spacing="4" font-weight="500">
+    VOICE AI — SYSTEM ARCHITECTURE
+  </text>
+  <line x1="520" y1="72" x2="646" y2="72" stroke="#C9A84C" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="660" cy="72" r="2.8" fill="#C9A84C" opacity="0.7"/>
+  <line x1="674" y1="72" x2="800" y2="72" stroke="#C9A84C" stroke-width="0.8" opacity="0.35"/>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- COLUMN 1 — CALLER                                           -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <g>
+    <rect x="28" y="300" width="112" height="108" rx="12"
+          fill="#080F1E" stroke="#C9A84C" stroke-width="0.9" stroke-opacity="0.38"/>
+    <rect x="28" y="312" width="3.5" height="84" rx="2" fill="#C9A84C"/>
+
+    <!-- Phone SVG icon -->
+    <g transform="translate(57,318)" fill="none" stroke="#C9A84C" stroke-width="1.6"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07
+               A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67
+               A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81
+               a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.92-.92
+               a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </g>
+
+    <text x="84" y="357" text-anchor="middle" font-size="11.5" font-weight="700"
+          fill="white" font-family="ui-sans-serif,system-ui,sans-serif">Customer</text>
+    <text x="84" y="371" text-anchor="middle" font-size="9.5" fill="#5A7A9A"
+          font-family="ui-sans-serif,system-ui,sans-serif">Voice Call</text>
+    <text x="84" y="385" text-anchor="middle" font-size="8.5" fill="#3D5A80"
+          font-family="ui-sans-serif,system-ui,sans-serif">AR / EN</text>
+    <text x="84" y="399" text-anchor="middle" font-size="8.5" fill="#3D5A80"
+          font-family="ui-sans-serif,system-ui,sans-serif">Saudi mobile</text>
+  </g>
+
+  <!-- ARROW: Caller → Vapi -->
+  <line x1="140" y1="354" x2="188" y2="354" stroke="#C9A84C" stroke-width="1.6"
+        stroke-opacity="0.7" marker-end="url(#arrowGold)"/>
+  <text x="164" y="346" text-anchor="middle" font-size="8" fill="#3D5A80">SIP/phone</text>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- COLUMN 2 — VAPI PLATFORM                                    -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <g>
+    <rect x="193" y="200" width="185" height="310" rx="12"
+          fill="#080F1E" stroke="#C9A84C" stroke-width="0.9" stroke-opacity="0.38"/>
+    <rect x="193" y="214" width="3.5" height="282" rx="2" fill="#C9A84C"/>
+
+    <text x="285" y="228" text-anchor="middle" font-size="12.5" font-weight="700"
+          fill="white" font-family="ui-sans-serif,system-ui,sans-serif">Vapi Platform</text>
+    <line x1="210" y1="237" x2="365" y2="237" stroke="#C9A84C" stroke-width="0.6" opacity="0.25"/>
+
+    <!-- STT -->
+    <text x="210" y="256" font-size="9" font-weight="700" fill="#C9A84C" opacity="0.85">STT</text>
+    <text x="210" y="271" font-size="9" fill="#7A95B0">Deepgram nova-2  (EN)</text>
+    <text x="210" y="284" font-size="9" fill="#7A95B0">11labs Scribe v2  (AR)</text>
+    <text x="210" y="297" font-size="9" fill="#7A95B0">language: multi</text>
+    <line x1="210" y1="306" x2="365" y2="306" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+    <!-- LLM -->
+    <text x="210" y="322" font-size="9" font-weight="700" fill="#C9A84C" opacity="0.85">LLM</text>
+    <text x="210" y="337" font-size="9" fill="#7A95B0">gpt-5.2-chat-latest</text>
+    <text x="210" y="350" font-size="9" fill="#7A95B0">temp 0.6 · multilingual</text>
+    <text x="210" y="363" font-size="9" fill="#7A95B0">Appointments → temp 0.3</text>
+    <line x1="210" y1="372" x2="365" y2="372" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+    <!-- TTS -->
+    <text x="210" y="388" font-size="9" font-weight="700" fill="#C9A84C" opacity="0.85">TTS</text>
+    <text x="210" y="403" font-size="9" fill="#7A95B0">11labs shimmer · speed 0.95</text>
+    <text x="210" y="416" font-size="9" fill="#7A95B0">HD voice · Krisp denoise</text>
+    <line x1="210" y1="425" x2="365" y2="425" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+    <!-- Lifecycle -->
+    <text x="210" y="441" font-size="9" font-weight="700" fill="#C9A84C" opacity="0.85">HOOKS</text>
+    <text x="210" y="456" font-size="9" fill="#7A95B0">end-of-call-report</text>
+    <text x="210" y="469" font-size="9" fill="#5A7A9A">→ waitUntil(logInteraction)</text>
+    <text x="210" y="482" font-size="9" fill="#5A7A9A">→ Interactions sheet</text>
+    <text x="210" y="497" font-size="9" fill="#5A7A9A">silence: 20s · max: 480s</text>
+  </g>
+
+  <!-- ARROW: Vapi → Squad -->
+  <line x1="378" y1="354" x2="428" y2="354" stroke="#C9A84C" stroke-width="1.6"
+        stroke-opacity="0.7" marker-end="url(#arrowGold)"/>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- COLUMN 3 — VAPI SQUAD (group box + agents)                  -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+
+  <!-- Group outline -->
+  <rect x="433" y="128" width="172" height="468" rx="14"
+        fill="rgba(10,18,35,0.55)" stroke="#C9A84C" stroke-width="0.7"
+        stroke-opacity="0.22" stroke-dasharray="7,4"/>
+  <text x="519" y="150" text-anchor="middle" font-size="9" font-weight="700"
+        fill="#C9A84C" opacity="0.55" letter-spacing="3"
+        font-family="ui-sans-serif,system-ui,sans-serif">VAPI SQUAD · 11 AGENTS</text>
+
+  <!-- Agent: Greeter -->
+  <rect x="444" y="160" width="150" height="56" rx="9"
+        fill="#0C1B30" stroke="#C9A84C" stroke-width="1.1" stroke-opacity="0.7"/>
+  <text x="519" y="180" text-anchor="middle" font-size="11" font-weight="700"
+        fill="white" font-family="ui-sans-serif,system-ui,sans-serif">Greeter Agent</text>
+  <text x="519" y="194" text-anchor="middle" font-size="8.5" fill="#5A7A9A">routes by intent · bilingual</text>
+  <text x="519" y="207" text-anchor="middle" font-size="8.5" fill="#4B6A8A">transferCall → specialists</text>
+
+  <!-- Routing stem down from Greeter -->
+  <line x1="519" y1="216" x2="519" y2="236" stroke="#C9A84C" stroke-width="0.9" stroke-opacity="0.4"/>
+
+  <!-- Agent: Visa -->
+  <rect x="444" y="236" width="150" height="50" rx="8"
+        fill="#091424" stroke="#C9A84C" stroke-width="0.6" stroke-opacity="0.28"/>
+  <text x="519" y="256" text-anchor="middle" font-size="10.5" font-weight="600"
+        fill="#CBD5E1" font-family="ui-sans-serif,system-ui,sans-serif">Visa Specialist</text>
+  <text x="519" y="271" text-anchor="middle" font-size="8.5" fill="#475569">info · eligibility · Schengen</text>
+
+  <!-- Agent: Status -->
+  <rect x="444" y="294" width="150" height="50" rx="8"
+        fill="#091424" stroke="#C9A84C" stroke-width="0.6" stroke-opacity="0.28"/>
+  <text x="519" y="314" text-anchor="middle" font-size="10.5" font-weight="600"
+        fill="#CBD5E1" font-family="ui-sans-serif,system-ui,sans-serif">Status Specialist</text>
+  <text x="519" y="329" text-anchor="middle" font-size="8.5" fill="#C9A84C" opacity="0.75">get_application_status</text>
+
+  <!-- Agent: Documents -->
+  <rect x="444" y="352" width="150" height="50" rx="8"
+        fill="#091424" stroke="#C9A84C" stroke-width="0.6" stroke-opacity="0.28"/>
+  <text x="519" y="372" text-anchor="middle" font-size="10.5" font-weight="600"
+        fill="#CBD5E1" font-family="ui-sans-serif,system-ui,sans-serif">Documents Specialist</text>
+  <text x="519" y="387" text-anchor="middle" font-size="8.5" fill="#475569">required docs · checklists</text>
+
+  <!-- Agent: Appointments -->
+  <rect x="444" y="410" width="150" height="50" rx="8"
+        fill="#091424" stroke="#C9A84C" stroke-width="0.6" stroke-opacity="0.28"/>
+  <text x="519" y="430" text-anchor="middle" font-size="10.5" font-weight="600"
+        fill="#CBD5E1" font-family="ui-sans-serif,system-ui,sans-serif">Appointments Specialist</text>
+  <text x="519" y="445" text-anchor="middle" font-size="8.5" fill="#C9A84C" opacity="0.75">create_appointment</text>
+
+  <!-- Agent: Care -->
+  <rect x="444" y="468" width="150" height="50" rx="8"
+        fill="#091424" stroke="#C9A84C" stroke-width="0.6" stroke-opacity="0.28"/>
+  <text x="519" y="488" text-anchor="middle" font-size="10.5" font-weight="600"
+        fill="#CBD5E1" font-family="ui-sans-serif,system-ui,sans-serif">Care Specialist</text>
+  <text x="519" y="503" text-anchor="middle" font-size="8.5" fill="#475569">human transfer · escalate</text>
+
+  <!-- AR / EN badge per agent -->
+  <g font-size="8" font-family="ui-sans-serif,system-ui,sans-serif">
+    <rect x="444" y="237" width="22" height="13" rx="3" fill="#C9A84C" opacity="0.15"/>
+    <text x="455" y="247" text-anchor="middle" fill="#C9A84C" opacity="0.8">×2</text>
+    <rect x="444" y="295" width="22" height="13" rx="3" fill="#C9A84C" opacity="0.15"/>
+    <text x="455" y="305" text-anchor="middle" fill="#C9A84C" opacity="0.8">×2</text>
+    <rect x="444" y="353" width="22" height="13" rx="3" fill="#C9A84C" opacity="0.15"/>
+    <text x="455" y="363" text-anchor="middle" fill="#C9A84C" opacity="0.8">×2</text>
+    <rect x="444" y="411" width="22" height="13" rx="3" fill="#C9A84C" opacity="0.15"/>
+    <text x="455" y="421" text-anchor="middle" fill="#C9A84C" opacity="0.8">×2</text>
+    <rect x="444" y="469" width="22" height="13" rx="3" fill="#C9A84C" opacity="0.15"/>
+    <text x="455" y="479" text-anchor="middle" fill="#C9A84C" opacity="0.8">×2</text>
+  </g>
+
+  <!-- ARROW: Squad → Next.js API (tool-calls) -->
+  <line x1="605" y1="354" x2="662" y2="354" stroke="#C9A84C" stroke-width="1.6"
+        stroke-opacity="0.7" marker-end="url(#arrowGold)"/>
+  <text x="634" y="346" text-anchor="middle" font-size="8" fill="#3D5A80">tool-calls</text>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- COLUMN 4 — NEXT.JS API                                      -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <g>
+    <rect x="667" y="264" width="172" height="180" rx="12"
+          fill="#080F1E" stroke="#C9A84C" stroke-width="0.9" stroke-opacity="0.38"/>
+    <rect x="667" y="278" width="3.5" height="152" rx="2" fill="#C9A84C"/>
+
+    <text x="753" y="290" text-anchor="middle" font-size="12.5" font-weight="700"
+          fill="white" font-family="ui-sans-serif,system-ui,sans-serif">Next.js API Route</text>
+    <line x1="684" y1="299" x2="826" y2="299" stroke="#C9A84C" stroke-width="0.6" opacity="0.25"/>
+
+    <text x="684" y="316" font-size="9" font-weight="700" fill="#C9A84C" opacity="0.85">ENDPOINT</text>
+    <text x="684" y="330" font-size="9" fill="#7A95B0">POST /api/vapi/tools</text>
+    <text x="684" y="343" font-size="9" fill="#7A95B0">HMAC-SHA256 verified</text>
+    <line x1="684" y1="352" x2="826" y2="352" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+    <text x="684" y="368" font-size="9" font-weight="700" fill="#C9A84C" opacity="0.85">DISPATCH</text>
+    <text x="684" y="382" font-size="9" fill="#7A95B0">tool-calls → execute tool</text>
+    <text x="684" y="395" font-size="9" fill="#7A95B0">end-of-call → logInteraction</text>
+    <text x="684" y="408" font-size="9" fill="#5A7A9A">* events → 200 OK (health)</text>
+    <line x1="684" y1="417" x2="826" y2="417" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+    <text x="684" y="430" font-size="9" fill="#5A7A9A">GET /api/dashboard</text>
+    <text x="684" y="443" font-size="9" fill="#3D5A80">x-dashboard-key auth</text>
+  </g>
+
+  <!-- ARROW: API → Sheets -->
+  <line x1="839" y1="354" x2="896" y2="354" stroke="#C9A84C" stroke-width="1.6"
+        stroke-opacity="0.7" marker-end="url(#arrowGold)"/>
+  <text x="867" y="346" text-anchor="middle" font-size="8" fill="#3D5A80">googleapis v4</text>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- COLUMN 5 — GOOGLE SHEETS                                    -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <g>
+    <rect x="901" y="185" width="200" height="360" rx="12"
+          fill="#080F1E" stroke="#34D399" stroke-width="0.9" stroke-opacity="0.35"/>
+    <rect x="901" y="200" width="3.5" height="330" rx="2" fill="#34D399" opacity="0.7"/>
+
+    <text x="1001" y="213" text-anchor="middle" font-size="12.5" font-weight="700"
+          fill="white" font-family="ui-sans-serif,system-ui,sans-serif">Google Sheets</text>
+    <text x="1001" y="226" text-anchor="middle" font-size="9" fill="#3D7A60">
+      GOOGLE_SHEETS_ID — 3 tabs
+    </text>
+    <line x1="918" y1="234" x2="1088" y2="234" stroke="#34D399" stroke-width="0.6" opacity="0.2"/>
+
+    <!-- Tab: Applications -->
+    <rect x="916" y="242" width="170" height="88" rx="8"
+          fill="rgba(52,211,153,0.05)" stroke="rgba(52,211,153,0.22)" stroke-width="0.8"/>
+    <text x="1001" y="260" text-anchor="middle" font-size="10.5" font-weight="700"
+          fill="#34D399" font-family="ui-sans-serif,system-ui,sans-serif">Applications</text>
+    <text x="1001" y="274" text-anchor="middle" font-size="8.5" fill="#5A7A9A">Range A:K · read-only</text>
+    <text x="1001" y="287" text-anchor="middle" font-size="8.5" fill="#5A7A9A">50 seed records</text>
+    <text x="1001" y="300" text-anchor="middle" font-size="8.5" fill="#5A7A9A">DK-YYYY-NNN format</text>
+    <text x="1001" y="313" text-anchor="middle" font-size="8.5" fill="#3D5A80">status · branch · dates · notes</text>
+    <text x="1001" y="325" text-anchor="middle" font-size="8.5" fill="#3D5A80">O(n) scan — 50 rows</text>
+
+    <!-- Tab: Appointments -->
+    <rect x="916" y="338" width="170" height="88" rx="8"
+          fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.22)" stroke-width="0.8"/>
+    <text x="1001" y="356" text-anchor="middle" font-size="10.5" font-weight="700"
+          fill="#C9A84C" font-family="ui-sans-serif,system-ui,sans-serif">Appointments</text>
+    <text x="1001" y="370" text-anchor="middle" font-size="8.5" fill="#5A7A9A">Range A:J · append-only</text>
+    <text x="1001" y="383" text-anchor="middle" font-size="8.5" fill="#5A7A9A">conflict check on insert</text>
+    <text x="1001" y="396" text-anchor="middle" font-size="8.5" fill="#5A7A9A">same branch+date+time blocked</text>
+    <text x="1001" y="409" text-anchor="middle" font-size="8.5" fill="#3D5A80">APT-{code}-{date}-{rand}</text>
+    <text x="1001" y="421" text-anchor="middle" font-size="8.5" fill="#3D5A80">phone · whatsapp · visa type</text>
+
+    <!-- Tab: Interactions -->
+    <rect x="916" y="434" width="170" height="98" rx="8"
+          fill="rgba(96,165,250,0.05)" stroke="rgba(96,165,250,0.22)" stroke-width="0.8"/>
+    <text x="1001" y="452" text-anchor="middle" font-size="10.5" font-weight="700"
+          fill="#60A5FA" font-family="ui-sans-serif,system-ui,sans-serif">Interactions</text>
+    <text x="1001" y="466" text-anchor="middle" font-size="8.5" fill="#5A7A9A">Range A:H · append-only</text>
+    <text x="1001" y="479" text-anchor="middle" font-size="8.5" fill="#5A7A9A">ISO timestamp filter: today</text>
+    <text x="1001" y="492" text-anchor="middle" font-size="8.5" fill="#5A7A9A">session · lang · agent · dur</text>
+    <text x="1001" y="505" text-anchor="middle" font-size="8.5" fill="#3D5A80">escalated flag · summary</text>
+    <text x="1001" y="518" text-anchor="middle" font-size="8.5" fill="#3D5A80">written via waitUntil()</text>
+    <text x="1001" y="531" text-anchor="middle" font-size="8.5" fill="#2A4A6A">UTC — KSA is UTC+3</text>
+  </g>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- DASHBOARD (bottom)                                          -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <g>
+    <rect x="667" y="596" width="172" height="100" rx="12"
+          fill="#080F1E" stroke="#60A5FA" stroke-width="0.9" stroke-opacity="0.45"/>
+    <rect x="667" y="610" width="3.5" height="72" rx="2" fill="#60A5FA" opacity="0.7"/>
+
+    <text x="753" y="624" text-anchor="middle" font-size="12" font-weight="700"
+          fill="white" font-family="ui-sans-serif,system-ui,sans-serif">Operations Dashboard</text>
+    <line x1="684" y1="631" x2="826" y2="631" stroke="#60A5FA" stroke-width="0.6" opacity="0.22"/>
+    <text x="753" y="646" text-anchor="middle" font-size="9" fill="#7A95B0">GET /api/dashboard · 30s poll</text>
+    <text x="753" y="659" text-anchor="middle" font-size="9" fill="#5A7A9A">x-dashboard-key header auth</text>
+    <text x="753" y="672" text-anchor="middle" font-size="9" fill="#5A7A9A">stats · top agent · lang split</text>
+    <text x="753" y="685" text-anchor="middle" font-size="9" fill="#3D5A80">last 20 interactions · live</text>
+  </g>
+
+  <!-- ARROW: Dashboard → API (polling, dashed blue going up) -->
+  <line x1="710" y1="596" x2="710" y2="444"
+        stroke="#60A5FA" stroke-width="1.3" stroke-opacity="0.45"
+        stroke-dasharray="6,4" marker-end="url(#arrowBlue)"/>
+  <text x="698" y="530" text-anchor="end" font-size="8" fill="#2A4A6A" transform="rotate(-90,698,530)">polls every 30s</text>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- END-OF-CALL arc: Vapi bottom → Interactions tab             -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <path d="M 285 510 Q 285 620 580 640 Q 780 650 916 480"
+        fill="none" stroke="#60A5FA" stroke-width="1.1"
+        stroke-opacity="0.32" stroke-dasharray="5,4"
+        marker-end="url(#arrowBlue)"/>
+  <text x="480" y="660" text-anchor="middle" font-size="8" fill="#2A4A6A">end-of-call-report → logInteraction()</text>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- LEGEND                                                      -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <g font-family="ui-sans-serif,system-ui,sans-serif">
+    <rect x="1130" y="195" width="162" height="148" rx="10"
+          fill="rgba(8,15,30,0.9)" stroke="rgba(255,255,255,0.07)" stroke-width="0.8"/>
+    <text x="1211" y="213" text-anchor="middle" font-size="9.5" font-weight="700"
+          fill="#64748B" letter-spacing="2">LEGEND</text>
+
+    <!-- Gold line -->
+    <line x1="1148" y1="228" x2="1178" y2="228" stroke="#C9A84C" stroke-width="2" opacity="0.8"/>
+    <text x="1188" y="232" font-size="9" fill="#7A95B0">Voice / tool call flow</text>
+
+    <!-- Blue dashed -->
+    <line x1="1148" y1="248" x2="1178" y2="248" stroke="#60A5FA" stroke-width="1.5"
+          stroke-dasharray="5,3" opacity="0.7"/>
+    <text x="1188" y="252" font-size="9" fill="#7A95B0">Polling / async log</text>
+
+    <!-- Gold border box -->
+    <rect x="1148" y="260" width="14" height="10" rx="2"
+          fill="none" stroke="#C9A84C" stroke-width="0.9" stroke-opacity="0.6"/>
+    <text x="1188" y="270" font-size="9" fill="#7A95B0">Vapi / API node</text>
+
+    <!-- Green border box -->
+    <rect x="1148" y="280" width="14" height="10" rx="2"
+          fill="none" stroke="#34D399" stroke-width="0.9" stroke-opacity="0.6"/>
+    <text x="1188" y="290" font-size="9" fill="#7A95B0">Google Sheets</text>
+
+    <!-- Blue border box -->
+    <rect x="1148" y="300" width="14" height="10" rx="2"
+          fill="none" stroke="#60A5FA" stroke-width="0.9" stroke-opacity="0.6"/>
+    <text x="1188" y="310" font-size="9" fill="#7A95B0">Dashboard</text>
+
+    <!-- ×2 badge -->
+    <rect x="1148" y="319" width="14" height="10" rx="3"
+          fill="#C9A84C" opacity="0.15"/>
+    <text x="1155" y="328" font-size="8" fill="#C9A84C" opacity="0.8">×2</text>
+    <text x="1188" y="330" font-size="9" fill="#7A95B0">AR + EN variant</text>
+  </g>
+
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <!-- FOOTER                                                      -->
+  <!-- ════════════════════════════════════════════════════════════ -->
+  <text x="660" y="720" text-anchor="middle" font-size="9" fill="#5A7A9A"
+        font-family="ui-sans-serif,system-ui,sans-serif" letter-spacing="1">
+    Masaar KSA · AI Voice Suite · Vapi + GPT-5.2 + Google Sheets + Next.js · Vercel
+  </text>
+
+</svg>
