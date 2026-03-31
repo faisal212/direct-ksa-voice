@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { waitUntil } from '@vercel/functions'
 import { verifyVapiSignature } from './vapi.utils'
 import { handleEndOfCallReport, handleToolCall, UnknownToolError } from './vapi.service'
 
@@ -16,7 +17,7 @@ export async function POST(req: NextRequest) {
 
   // ── End-of-call report ────────────────────────────────────────────
   if (msgType === 'end-of-call-report') {
-    handleEndOfCallReport(body).catch(err => console.error('End-of-call log failed:', err))
+    waitUntil(handleEndOfCallReport(body).catch(err => console.error('End-of-call log failed:', err)))
     return NextResponse.json({ ok: true })
   }
 
