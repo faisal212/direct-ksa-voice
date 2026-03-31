@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { BrandMark } from '@/components/ui/BrandMark'
+import { brand, brandDerived } from '@/lib/brand'
 import { GoldDivider } from '@/components/ui/GoldDivider'
 import { StatusBadge } from '@/components/status/StatusBadge'
 
@@ -25,19 +26,22 @@ const STATUS_MESSAGES: Record<string, { ar: string; en: string }> = {
 }
 
 export function StatusClient() {
-  const [appId,   setAppId]   = useState('')
-  const [data,    setData]    = useState<StatusData | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error,   setError]   = useState('')
+  const [seqInput, setSeqInput] = useState('')
+  const [data,     setData]     = useState<StatusData | null>(null)
+  const [loading,  setLoading]  = useState(false)
+  const [error,    setError]    = useState('')
+
+  const currentYear = new Date().getFullYear()
+  const fullId = `${brand.idPrefix}-${currentYear}-${seqInput.trim().padStart(3, '0')}`
 
   async function checkStatus() {
-    if (!appId.trim()) return
+    if (!seqInput.trim()) return
     setLoading(true)
     setError('')
     setData(null)
 
     try {
-      const res  = await fetch(`/api/status?id=${encodeURIComponent(appId.trim().toUpperCase())}`)
+      const res  = await fetch(`/api/status?id=${encodeURIComponent(fullId)}`)
       const json = await res.json()
 
       if (!res.ok || json.error) {
@@ -53,52 +57,97 @@ export function StatusClient() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FDF8F0] via-white to-[#F5F0E8] relative overflow-hidden flex items-center justify-center p-4">
-      {/* Decorative background blobs */}
-      <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#C9A84C]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#0A1628]/5 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Faint Islamic geometric pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
-
+    <div className="min-h-screen relative flex items-center justify-center p-4 z-10">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
-        <GlassCard variant="light" className="p-10 w-full max-w-lg relative overflow-hidden">
+        <GlassCard variant="dark" className="p-10 w-full max-w-lg relative overflow-hidden">
           {/* Gold accent top line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C9A84C]/0 via-[#C9A84C] to-[#C9A84C]/0" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#C9A84C]/0 via-[#C9A84C] to-[#C9A84C]/0" />
 
           {/* Brand + Header */}
           <div className="mb-10">
-            <BrandMark variant="light" size="md" />
+            <BrandMark variant="dark" size="md" />
             <div className="flex items-center justify-center gap-3 mt-3">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#C9A84C]/40" />
-              <p className="text-sm font-medium text-gray-500 tracking-wide uppercase">Application Status</p>
+              <p className="text-sm font-medium text-gray-400 tracking-wide uppercase">Application Status</p>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#C9A84C]/40" />
             </div>
-            <p className="font-arabic text-lg text-gray-400 mt-1 text-center" dir="rtl">حالة الطلب</p>
+            <p className="font-arabic text-lg text-gray-500 mt-1 text-center" dir="rtl">حالة الطلب</p>
           </div>
 
-          {/* Input */}
-          <div className="space-y-3">
-            <input
-              type="text"
-              value={appId}
-              onChange={e => setAppId(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && checkStatus()}
-              placeholder="DK-2026-001"
-              className="w-full bg-[#F5F0E8]/50 border border-[#E8DFD0] rounded-2xl px-6 py-4 text-center text-lg font-mono tracking-widest text-[#0A1628] placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/50 focus:border-[#C9A84C]/30 transition-all duration-300 uppercase"
-            />
+          {/* Segmented ID input */}
+          <div className="space-y-4">
+            <p className="text-xs text-gray-500 text-center tracking-wider uppercase">Enter your application number</p>
+
+            <div className="flex items-center justify-center gap-2">
+              {/* Fixed: Brand prefix */}
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05, type: 'spring', stiffness: 400, damping: 28 }}
+                className="h-13 px-4 py-3.5 flex items-center justify-center rounded-xl bg-[#C9A84C]/[0.07] border border-[#C9A84C]/20"
+                title="Brand prefix — fixed"
+              >
+                <span className="font-mono text-sm tracking-[0.25em] select-none" style={{ color: 'var(--brand-color)', opacity: 0.65 }}>
+                  {brand.idPrefix}
+                </span>
+              </motion.div>
+
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                className="font-mono text-sm select-none text-[#C9A84C]/25"
+              >—</motion.span>
+
+              {/* Fixed: Year */}
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, type: 'spring', stiffness: 400, damping: 28 }}
+                className="h-13 px-4 py-3.5 flex items-center justify-center rounded-xl bg-[#C9A84C]/[0.07] border border-[#C9A84C]/20"
+                title="Application year — fixed"
+              >
+                <span className="font-mono text-sm tracking-[0.25em] select-none" style={{ color: 'var(--brand-color)', opacity: 0.65 }}>
+                  {currentYear}
+                </span>
+              </motion.div>
+
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="font-mono text-sm select-none text-[#C9A84C]/25"
+              >—</motion.span>
+
+              {/* Editable: Sequence number */}
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, type: 'spring', stiffness: 400, damping: 28 }}
+                className="h-13 px-4 py-3.5 flex items-center justify-center rounded-xl bg-white/[0.06] border border-white/[0.14] focus-within:border-[#C9A84C]/55 focus-within:bg-[#C9A84C]/[0.05] focus-within:shadow-[0_0_24px_rgba(201,168,76,0.13)] transition-all duration-300 cursor-text"
+                onClick={e => (e.currentTarget.querySelector('input') as HTMLInputElement)?.focus()}
+              >
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={seqInput}
+                  onChange={e => setSeqInput(e.target.value.replace(/[^0-9]/g, '').slice(0, 3))}
+                  onKeyDown={e => e.key === 'Enter' && checkStatus()}
+                  placeholder="001"
+                  maxLength={3}
+                  autoFocus
+                  className="w-14 bg-transparent text-center font-mono text-sm tracking-[0.25em] text-white placeholder:text-gray-600 focus:outline-none"
+                />
+              </motion.div>
+            </div>
+
             <button
               onClick={checkStatus}
-              disabled={loading || !appId.trim()}
+              disabled={loading || !seqInput.trim()}
               className="w-full bg-gradient-to-r from-[#C9A84C] to-[#E4CC7A] text-[#0A1628] rounded-2xl py-4 font-bold text-base tracking-wide hover:shadow-lg hover:shadow-[#C9A84C]/20 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300"
             >
               {loading ? (
@@ -120,7 +169,7 @@ export function StatusClient() {
                 animate={{ opacity: 1, x: [0, -10, 10, -5, 5, 0] }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                className="mt-6 p-5 rounded-2xl bg-red-50/80 border border-red-200/30 backdrop-blur-sm text-red-700 text-sm text-center"
+                className="mt-6 p-5 rounded-2xl bg-red-500/10 border border-red-500/20 backdrop-blur-sm text-red-300 text-sm text-center"
               >
                 {error}
               </motion.div>
@@ -158,10 +207,10 @@ export function StatusClient() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 * i }}
-                      className="flex justify-between items-center py-3 border-b border-[#E8DFD0]/30 last:border-0"
+                      className="flex justify-between items-center py-3 border-b border-white/[0.06] last:border-0"
                     >
-                      <span className="text-sm font-medium text-gray-400 uppercase tracking-wider">{row.label}</span>
-                      <span className={`text-base font-semibold text-[#0A1628] ${row.mono ? 'font-mono' : ''}`}>{row.value}</span>
+                      <span className="text-sm font-medium text-gray-500 uppercase tracking-wider">{row.label}</span>
+                      <span className={`text-base font-semibold text-white ${row.mono ? 'font-mono' : ''}`}>{row.value}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -172,13 +221,13 @@ export function StatusClient() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200/50 backdrop-blur-sm"
+                    className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 backdrop-blur-sm"
                   >
                     <div className="flex items-start gap-2">
-                      <svg className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <svg className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01M12 3l9.66 16.5a1 1 0 01-.87 1.5H3.21a1 1 0 01-.87-1.5L12 3z" />
                       </svg>
-                      <p className="text-sm text-amber-800">Note: {data.notes}</p>
+                      <p className="text-sm text-amber-200">Note: {data.notes}</p>
                     </div>
                   </motion.div>
                 )}
@@ -187,8 +236,8 @@ export function StatusClient() {
           </AnimatePresence>
 
           {/* Footer */}
-          <p className="text-xs text-center text-gray-400 mt-8 pt-6 border-t border-[#E8DFD0]/20">
-            Questions? Visit any Direct KSA branch or call us
+          <p className="text-xs text-center text-gray-500 mt-8 pt-6 border-t border-white/[0.06]">
+            Questions? Visit any {brand.name} branch or call us
             <br />
             <span className="font-arabic" dir="rtl">لأي استفسار، زوروا أي فرع أو تواصلوا معنا</span>
           </p>

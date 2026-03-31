@@ -24,6 +24,7 @@ if (missingRec.length) {
 
 import { post, patch } from './vapi/api'
 import { MODEL, STT_AR, STT_EN } from './vapi/config'
+import { brand } from '../lib/brand'
 import { greeterAgent } from './vapi/agents/greeter'
 import { visaAgents } from './vapi/agents/visa'
 import { statusAgents } from './vapi/agents/status'
@@ -46,7 +47,7 @@ const agents = [
 
 // ── Setup ─────────────────────────────────────────────────────────────
 async function setup() {
-  console.log('🚀 Setting up Direct KSA Vapi Squad (dual-language)...\n')
+  console.log(`🚀 Setting up ${brand.name} Vapi Squad (dual-language)...\n`)
   console.log(`Tool URL: ${TOOL_URL}\n`)
 
   const existingIds: Record<string, string | undefined> = {
@@ -107,7 +108,7 @@ async function setup() {
   // Squad
   const existingSquadId = process.env.VAPI_SQUAD_ID
   const squadBody = {
-    name: 'Direct KSA AI Squad',
+    name: `${brand.name} AI Squad`,
     members: Object.entries(ids).map(([key, id]) => ({
       assistantId: id,
       // Greeter is entry point — override firstMessage

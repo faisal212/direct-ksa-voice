@@ -1,5 +1,7 @@
 'use client'
 
+import { brand } from '@/lib/brand'
+
 interface BrandMarkProps {
   variant?: 'light' | 'dark'
   size?: 'sm' | 'md' | 'lg'
@@ -10,13 +12,13 @@ export function BrandMark({ variant = 'light', size = 'md' }: BrandMarkProps) {
   const arabicSize = { sm: 'text-xs',   md: 'text-sm',  lg: 'text-base' }
   const textColor  = variant === 'light' ? 'text-[#0A1628]' : 'text-white'
   const arabicColor = variant === 'light' ? 'text-gray-400' : 'text-gray-500'
-
+  const namePrimary = brand.name.replace(brand.nameAccent, '').trim()
   return (
     <div className="text-center">
       <h1 className={`${sizes[size]} font-bold tracking-tight ${textColor}`}>
-        Direct <span className="text-[#C9A84C]">KSA</span>
+        {namePrimary} <span style={{ color: 'var(--brand-color)' }}>{brand.nameAccent}</span>
       </h1>
-      <p className={`font-arabic ${arabicSize[size]} ${arabicColor} mt-0.5`} dir="rtl">دايركت</p>
+      <p className={`font-arabic ${arabicSize[size]} ${arabicColor} mt-0.5`} dir="rtl">{brand.nameAr}</p>
     </div>
   )
 }

@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { lookupStatus } from './status.service'
+import { brandDerived } from '@/lib/brand'
 
 export async function GET(req: NextRequest) {
   const applicationId = req.nextUrl.searchParams.get('id')
 
   if (!applicationId) {
     return NextResponse.json(
-      { error: 'Missing application ID. Use ?id=DK-2026-001' },
+      { error: `Missing application ID. Use ?id=${brandDerived.idExample}` },
       { status: 400 }
     )
   }

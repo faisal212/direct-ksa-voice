@@ -40,5 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
-.env*.local
+# local screenshots / design iterations
+shots/
+
+# Claude Code local config (settings, skills)
+.claude/
+
+.claude.md
+Agents.md
+DIRECT_KSA_MANIFEST_v10.md

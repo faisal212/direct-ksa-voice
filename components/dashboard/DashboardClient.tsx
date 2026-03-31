@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { BrandMark } from '@/components/ui/BrandMark'
+import { brand } from '@/lib/brand'
 import { ShimmerSkeleton } from '@/components/ui/ShimmerSkeleton'
 import { StatCard } from '@/components/dashboard/StatCard'
 import { InteractionFeed, AGENT_LABELS, type Interaction } from '@/components/dashboard/InteractionFeed'
@@ -55,7 +56,7 @@ export function DashboardClient({ initialStats, initialInteractions }: Dashboard
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#060E1E] via-[#0A1628] to-[#060E1E] text-white relative">
+    <div className="min-h-screen text-white relative">
       {/* Faint grid pattern overlay */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -77,7 +78,7 @@ export function DashboardClient({ initialStats, initialInteractions }: Dashboard
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <h1 className="text-xl font-bold tracking-tight">
-              Direct <span className="text-[#C9A84C]">KSA</span>
+              {brand.name.replace(brand.nameAccent, '').trim()} <span style={{ color: brand.color }}>{brand.nameAccent}</span>
               <span className="text-gray-500 font-normal ml-3 text-sm">AI Operations</span>
             </h1>
           </div>

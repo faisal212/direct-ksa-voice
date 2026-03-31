@@ -5,6 +5,7 @@
 
 import * as dotenv from 'dotenv'
 import { google } from 'googleapis'
+import { brand } from '../lib/brand'
 
 dotenv.config({ path: '.env.local' })
 
@@ -146,15 +147,15 @@ function generateRows(): string[][] {
   const rows: string[][] = [header]
 
   for (let i = 0; i < 50; i++) {
-    const id     = `DK-2026-${String(i + 1).padStart(3, '0')}`
+    const id     = `${brand.idPrefix}-2026-${String(i + 1).padStart(3, '0')}`
     const name   = NAMES[i]
     const dest   = shuffledDests[i]
     let   status = shuffledStatuses[i]
 
     // Force the 3 demo IDs to the correct statuses
-    if (id === 'DK-2026-001') status = 'Under Review'
-    if (id === 'DK-2026-007') status = 'Approved'
-    if (id === 'DK-2026-012') status = 'Additional Docs'
+    if (id === `${brand.idPrefix}-2026-001`) status = 'Under Review'
+    if (id === `${brand.idPrefix}-2026-007`) status = 'Approved'
+    if (id === `${brand.idPrefix}-2026-012`) status = 'Additional Docs'
 
     const visa    = randOf(VISA_TYPES)
     const branch  = randOf(BRANCHES)
@@ -212,9 +213,9 @@ async function seed() {
   console.log('✅ Interactions header written')
 
   console.log('\n📋 Demo IDs to memorize:')
-  console.log('  DK-2026-001 → Under Review')
-  console.log('  DK-2026-007 → Approved')
-  console.log('  DK-2026-012 → Additional Docs')
+  console.log(`  ${brand.idPrefix}-2026-001 → Under Review`)
+  console.log(`  ${brand.idPrefix}-2026-007 → Approved`)
+  console.log(`  ${brand.idPrefix}-2026-012 → Additional Docs`)
   console.log('\n🎉 Done! All 3 sheets ready. Open your Google Sheet to verify.')
 }
 
